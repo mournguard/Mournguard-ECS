@@ -1,18 +1,11 @@
 @tool
 @icon("res://addons/Mournguard-ECS/Entity/icon.png")
-class_name Entity extends Node3D
+class_name Entity extends TypeAccessor
 
 func _ready() -> void:
-	child_entered_tree.connect(_on_child_entered_tree)
+	child_order_changed.connect(_on_child_order_changed)
 
-func _on_child_entered_tree(child: Node) -> void:
-	if (child is Component): set_editable_instance(child, true)
+func _on_child_order_changed():
 	update_configuration_warnings()
 
-func C(property: Variant) -> Component: return get_first_child_of_type(property)
-
-func get_first_child_of_type(property: Variant) -> Component:
-	for c in get_children():
-		if is_instance_of(c, property):
-			return c
-	return null
+func C(property: Variant) -> Component: return __(property)

@@ -1,6 +1,6 @@
 @tool
 @icon("res://addons/Mournguard-ECS/Component/icon.png")
-class_name Component extends Node
+class_name Component extends TypeAccessor
 
 var E:Entity:
 	get(): return get_parent()
