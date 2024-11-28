@@ -11,5 +11,5 @@ Simple Entity/Component System to make the composition of nodes simpler. Entity 
 - Add required Component Siblings to the output of a Component's `_get_configuration_requirements()`
 
 # Requires
-- [![Mournguard-EditorTools](https://img.shields.io/badge/Mournguard-EditorTools-blue?logo=github)]([https://godotengine.org](https://github.com/mournguard/Mournguard-EditorTools))
+- [![Mournguard-EditorTools](https://img.shields.io/badge/Mournguard-EditorTools-blue?logo=github)](https://github.com/mournguard/Mournguard-EditorTools)
 	- `git submodule add -- git@github.com:mournguard/Mournguard-EditorTools.git .\addons\Mournguard-EditorTools`
