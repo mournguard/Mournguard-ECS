@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/ECS/Component/icon.png")
+@icon("res://addons/Mournguard-ECS/Component/icon.png")
 class_name Component extends Node
 
 var E:Entity:

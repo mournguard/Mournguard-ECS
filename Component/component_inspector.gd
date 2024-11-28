@@ -1,34 +1,17 @@
-class_name ComponentInspectorPlugin extends EditorInspectorPlugin
-
-const INSPECTOR_PROPERTY_CATEGORY = preload("res://addons/ECS/Editor/InspectorPropertyCategory.tscn")
-const ENTITY_ICON = preload("res://addons/ECS/Entity/icon.png")
-const COMPONENT_ICON = preload("res://addons/ECS/Component/icon.png")
+class_name ComponentInspectorPlugin extends ECSInspectorPlugin
 
 func _can_handle(object): return object is Component
 
 func _parse_end(object: Object) -> void:
-	var p = object.get_parent()
-	if not p or not p is Entity: return
-	p = p as Entity
+	var content = Control.new()
 
-	var container = MarginContainer.new()
-	container.add_theme_constant_override("margin_top", 4)
-	container.add_theme_constant_override("margin_bottom", 4)
+	for c in object.get_children():
+		if c is Component:
+			var btn = Button.new()
+			btn.text = c.name
+			btn.pressed.connect(func():EditorInterface.edit_node(c), CONNECT_DEFERRED)
+			content.add_child(btn)
 
-	var vbox = VBoxContainer.new()
-	vbox.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	var inspector = _render_inspector("Entity", ENTITY_ICON, content)
 
-	var header2 = INSPECTOR_PROPERTY_CATEGORY.instantiate()
-	header2.icon = ENTITY_ICON
-	header2.text = "Entity"
-	vbox.add_child(header2)
-
-	var btn = Button.new()
-	btn.text = p.name
-	btn.pressed.connect(func():EditorInterface.edit_node(p), CONNECT_DEFERRED)
-	vbox.add_child(btn)
-
-	vbox.add_child(HSeparator.new())
-
-	container.add_child(vbox)
-	add_custom_control(container)
+	add_custom_control(inspector)

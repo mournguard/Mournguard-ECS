@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4mmnuw5uxkql"
-path="res://.godot/imported/icon.png-c95c71c8e37d08641f1e7384dfd4efda.ctex"
+path="res://.godot/imported/icon.png-e94d45e44cb93d1b5fe3142868a3b70d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/ECS/Component/icon.png"
-dest_files=["res://.godot/imported/icon.png-c95c71c8e37d08641f1e7384dfd4efda.ctex"]
+source_file="res://addons/Mournguard-ECS/Component/icon.png"
+dest_files=["res://.godot/imported/icon.png-e94d45e44cb93d1b5fe3142868a3b70d.ctex"]
 
 [params]
 

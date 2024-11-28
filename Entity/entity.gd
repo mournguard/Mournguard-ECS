@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/ECS/Entity/icon.png")
+@icon("res://addons/Mournguard-ECS/Entity/icon.png")
 class_name Entity extends Node3D
 
 func _ready() -> void:
