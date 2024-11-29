@@ -6,9 +6,9 @@ Simple Entity/Component System to make the composition of nodes simpler. Entity 
 - Build features into Component Nodes.
 - Compose Game Objects as Entity Nodes.
 - Recommended to wrap any other Godot node into a component.
+- Use `__(type)` from a Component or Entity to access any of its children via a Type.
+- Use `C(type)` from a Component or Entity to access a Component via a Type. (`__()` but with casting)
 - Use `E()` from a Component to access the Entity. Has to be a function so it can be overriden to narrow the parent type.
-- Use `C(type)` from a Component or Entity to access a Component via a Type.
-- Use `__(type)` form a Component to access any of its children via a Type.
 - Add required Component Siblings to the output of a Component's `_get_configuration_requirements()`
 
 # Requires
