@@ -6,18 +6,18 @@ var entity_inspector_plugin: EditorInspectorPlugin
 const ComponentInspectorPlugin = preload("res://addons/Mournguard-ECS/Component/component_inspector.gd")
 var component_inspector_plugin: EditorInspectorPlugin
 
-func _enter_tree():
+func _enter_tree() -> void:
 	_add_inspector_plugins()
 
-func _exit_tree():
+func _exit_tree() -> void:
 	_remove_inspector_plugins()
 
-func _add_inspector_plugins():
+func _add_inspector_plugins() -> void:
 	entity_inspector_plugin = EntityInspectorPlugin.new()
 	add_inspector_plugin(entity_inspector_plugin)
 	component_inspector_plugin = ComponentInspectorPlugin.new()
 	add_inspector_plugin(component_inspector_plugin)
 
-func _remove_inspector_plugins():
+func _remove_inspector_plugins() -> void:
 	remove_inspector_plugin(entity_inspector_plugin)
 	remove_inspector_plugin(component_inspector_plugin)

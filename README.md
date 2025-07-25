@@ -1,4 +1,4 @@
-[![Godot](https://img.shields.io/badge/Godot_Engine-4.4dev5-blue?logo=godotengine)](https://godotengine.org)
+[![Godot](https://img.shields.io/badge/Godot_Engine-4.5beta3-blue?logo=godotengine)](https://godotengine.org)
 # Mournguard ECS
 Simple Entity/Component System to make the composition of nodes simpler. Entity nodes hold component nodes, Component nodes have a standardized way to access their parent Entity and it's other components.
 
@@ -14,3 +14,5 @@ Simple Entity/Component System to make the composition of nodes simpler. Entity 
 # Requires
 - [![Mournguard-EditorTools](https://img.shields.io/badge/Mournguard-EditorTools-blue?logo=github)](https://github.com/mournguard/Mournguard-EditorTools)
 	- `git submodule add -- git@github.com:mournguard/Mournguard-EditorTools.git .\addons\Mournguard-EditorTools`
+- [![Mournguard-Actors](https://img.shields.io/badge/Mournguard-ECS-blue?logo=github)](https://github.com/mournguard/Mournguard-Actors)
+	- `git submodule add -- git@github.com:mournguard/Mournguard-Actors.git .\addons\Mournguard-Actors`

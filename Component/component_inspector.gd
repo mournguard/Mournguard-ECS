@@ -1,17 +1,19 @@
-class_name ComponentInspectorPlugin extends ECSInspectorPlugin
+extends ECSInspectorPlugin
 
-func _can_handle(object): return object is Component
+func _can_handle(object: Object) -> bool: return object is Component
 
-func _parse_end(object: Object) -> void:
-	var content = Control.new()
+func _parse_begin(object: Object) -> void:
+	var parent: Object = object.get_parent()
+	if !parent or parent is not Entity: return
 
-	for c in object.get_children():
-		if c is Component:
-			var btn = Button.new()
-			btn.text = c.name
-			btn.pressed.connect(func():EditorInterface.edit_node(c), CONNECT_DEFERRED)
-			content.add_child(btn)
+	var container := MarginContainer.new()
+	container.add_theme_constant_override("margin_top", 2)
+	container.add_theme_constant_override("margin_bottom", 6)
 
-	var inspector = _render_inspector("Entity", ENTITY_ICON, content)
+	var btn := Button.new()
+	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	btn.text = "← " + parent.name
+	btn.pressed.connect(func() -> void: EditorInterface.edit_node(parent), CONNECT_DEFERRED)
 
-	add_custom_control(inspector)
+	container.add_child(btn)
+	add_custom_control(container)
