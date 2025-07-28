@@ -4,6 +4,7 @@ func _can_handle(object: Object) -> bool: return object is Component
 
 func _parse_begin(object: Object) -> void:
 	var parent: Object = object.get_parent()
+	print(object.get_parent().name)
 	if !parent or parent is not Entity: return
 
 	var container := MarginContainer.new()

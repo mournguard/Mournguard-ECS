@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://1u5uv8ynx7i4"]
+
+[ext_resource type="Script" uid="uid://b3scebcg4o7uy" path="res://addons/Mournguard-ECS/Components/Body/Body3DCharacter.gd" id="1_qmvgq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmvgq"]
+
+[node name="Body3dCharacter" type="Node"]
+script = ExtResource("1_qmvgq")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_qmvgq")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D"]
+unique_name_in_owner = true
+avoidance_enabled = true
+avoidance_priority = 0.0
+debug_enabled = true

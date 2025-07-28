@@ -1,9 +1,9 @@
 @tool
 class_name ECSPlugin extends EditorPlugin
 
-const EntityInspectorPlugin = preload("res://addons/Mournguard-ECS/Entity/entity_inspector.gd")
+const EntityInspectorPlugin = preload("res://addons/Mournguard-ECS/Entity/EntityInspector.gd")
 var entity_inspector_plugin: EditorInspectorPlugin
-const ComponentInspectorPlugin = preload("res://addons/Mournguard-ECS/Component/component_inspector.gd")
+const ComponentInspectorPlugin = preload("res://addons/Mournguard-ECS/Component/ComponentInspector.gd")
 var component_inspector_plugin: EditorInspectorPlugin
 
 func _enter_tree() -> void:

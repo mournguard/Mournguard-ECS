@@ -1,6 +1,10 @@
 @tool
 @icon("res://addons/Mournguard-ECS/Entity/icon.png")
-class_name Entity extends TypeAccessor
+class_name Entity extends TypeAccessor3D
+
+const PASSTHROUGH_PROPERTIES = ["basis", "global_basis", "global_position", "global_rotation", "global_rotation_degrees", "global_transform", "position", "quaternion", "rotation", "rotation_degrees", "rotation_edit_mode", "rotation_order", "scale", "transform"]
+
+signal transform_changed()
 
 static var Id: int = 0
 static var Instances: Dictionary = {}
@@ -15,23 +19,18 @@ static func ById(id: int) -> Entity: return Instances[id]
 
 var unique_id: int
 
-var position: Vector3:
-	get():
+func _get(property: StringName) -> Variant:
+	if PASSTHROUGH_PROPERTIES.has(property):
 		if C(Body) and C(Body).get_collision_object():
-			return C(Body).get_collision_object().position
-		return Vector3.ZERO
+			if C(Body).get_collision_object().get_property_list().find_custom(func(_v: Dictionary) -> bool: return _v.name == property):
+				return C(Body).get_collision_object()[property]
+	return null
 
-var global_position: Vector3:
-	get():
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSFORM_CHANGED:
 		if C(Body) and C(Body).get_collision_object():
-			return C(Body).get_collision_object().global_position
-		return Vector3.ZERO
-
-var global_rotation: Vector3:
-	get():
-		if C(Body) and C(Body).get_collision_object():
-			return C(Body).get_collision_object().global_rotation
-		return Vector3.ZERO
+			C(Body).get_collision_object().global_transform = global_transform
+			transform_changed.emit()
 
 func _init() -> void:
 	unique_id = Id
@@ -39,6 +38,7 @@ func _init() -> void:
 	Id += 1
 
 func _ready() -> void:
+	set_notify_transform(true)
 	child_order_changed.connect(_on_child_order_changed)
 
 func _on_child_order_changed() -> void:

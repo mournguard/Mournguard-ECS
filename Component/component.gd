@@ -28,6 +28,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 					found = true
 					break
 			if found == false:
-				warnings.append("Parent [Entity] missing required ["+str(req)+"] component.")
+				warnings.append("Parent [Entity] missing required ["+str(req.get_global_name())+"] component.")
 
 	return warnings
