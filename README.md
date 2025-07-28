@@ -1,6 +1,9 @@
 [![Godot](https://img.shields.io/badge/Godot_Engine-4.5beta3-blue?logo=godotengine)](https://godotengine.org)
 # Mournguard ECS
-Simple Entity/Component System to make the composition of nodes simpler. Entity nodes hold component nodes, Component nodes have a standardized way to access their parent Entity and it's other components.
+Basic Entity/Component System to make the composition of nodes simpler. 
+Entity nodes hold Component nodes, Component nodes have a standardized way to access their parent Entity and it's other Components.
+It's a bit dumb and puts a bit of burden on the user to make sure nodes are setup properly (but adds warnings to help doing so) because if they aren't it'll 100% die at runtime.
+I just like having shortcuts for stuff that's done often.
 
 # Usage
 - Build features into `Component` Nodes.
@@ -12,6 +15,35 @@ Simple Entity/Component System to make the composition of nodes simpler. Entity 
 - Use `E()` from a Component to access the Entity. (Again this is just casting `get_parent()` to `Entity`)
 - Add required Component Siblings to the output of a Component's `_get_configuration_requirements()`. This is the main part that will add warnings for incompatibility in the editor.
 - Supplies basic `Body` components, a special case that allows the parent Entity to pass down it's transform so you can still do things like move an entity around with the editor gizmo from the main `Entity` node, but still being optional - Node all Entities need to have an actual visual component.
+
+# Example
+Say you want to add health to an Entity as well as a health bar display. You could add the health in a `Stats` component:
+
+```gdscript
+class_name State extends Component
+
+signal health_changed(health: float)
+
+@export var health: float = 100.0
+
+func hit(damage: float):
+	health -= damage
+	health_changed.emit(health)
+```
+
+Then, in a `HealthBar` component:
+
+```gdscript
+class_name HealthBar extends Component
+
+func _get_configuration_requirements() -> Array[Variant]: return [Stats]
+
+func _ready() -> void:
+	C(Stats).health_changed.connect(_on_health_changed)
+
+func _on_health_changed(health: float) -> void:
+	pass # Update the health UI
+```
 
 # Requires
 - [![Mournguard-EditorTools](https://img.shields.io/badge/Mournguard-EditorTools-blue?logo=github)](https://github.com/mournguard/Mournguard-EditorTools)
