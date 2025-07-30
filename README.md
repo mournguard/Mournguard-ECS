@@ -20,7 +20,7 @@ I just like having shortcuts for stuff that's done often.
 Say you want to add health to an Entity as well as a health bar display. You could add the health in a `Stats` component:
 
 ```gdscript
-class_name State extends Component
+class_name Stats extends Component
 
 signal health_changed(health: float)
 
