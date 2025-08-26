@@ -26,6 +26,14 @@ func _get(property: StringName) -> Variant:
 				return C(Body).get_collision_object()[property]
 	return null
 
+func _set(property: StringName, value: Variant) -> bool:
+	if PASSTHROUGH_PROPERTIES.has(property):
+		if C(Body) and C(Body).get_collision_object():
+			if C(Body).get_collision_object().get_property_list().find_custom(func(_v: Dictionary) -> bool: return _v.name == property):
+				C(Body).get_collision_object()[property] = value
+				return true
+	return false
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
 		if C(Body) and C(Body).get_collision_object():

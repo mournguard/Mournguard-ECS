@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://du3ddga6u228s"]
 
-[ext_resource type="Script" uid="uid://c2gjlvs721mhr" path="res://addons/Mournguard-ECS/Components/Body/Body3DStatic.gd" id="1_by8ox"]
+[ext_resource type="Script" uid="uid://cmb0mgdt4jnqy" path="res://addons/Mournguard-ECS/Components/Body/Body.gd" id="1_uq48i"]
 
 [node name="Body3dStatic" type="Node"]
-script = ExtResource("1_by8ox")
+script = ExtResource("1_uq48i")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Body" type="StaticBody3D" parent="."]
 unique_name_in_owner = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
